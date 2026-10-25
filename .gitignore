@@ -1,0 +1,21 @@
+# Ignore macOS system files anywhere in the project
+.DS_Store
+**/.DS_Store
+
+# Ignore VS Code configuration and tool paths
+.vscode/
+.clangd/
+
+# Ignore compiled executables and folders across all directories
+*.exe
+*.o
+*.app/
+*.dSYM/
+**/Contents/Info.plist
+**/DWARF/
+
+# Ignore web assets and images
+*.css
+*.js
+*.png
+*.ppm

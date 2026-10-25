@@ -372,3 +372,4 @@ int main() {
 
 // git remote set-url origin https://github.com/lucas-chang-lab/EECS280.git
 // git remote -v
+// git rm -r --cached .
