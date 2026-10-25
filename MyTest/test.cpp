@@ -369,3 +369,6 @@ int main() {
 //   fin.close();
 //   fout.close();
 // }
+
+// git remote set-url origin https://github.com/lucas-chang-lab/EECS280.git
+// git remote -v
