@@ -19,3 +19,9 @@
 *.js
 *.png
 *.ppm
+
+# git remote set-url origin https://github.com/lucas-chang-lab/EECS280.git
+# git remote -v
+# git reset
+# git rm -r --cached   // # Clear out the current bad staging area
+# git add  // # Re-add everything using the correctly positioned .gitignore
