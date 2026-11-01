@@ -1,42 +1,39 @@
 # ==========================================
-# 1. CONFIGURATION (Change these if needed)
+# 1. CONFIGURATION
 # ==========================================
-# Name of your final executable program
-TARGET   = test.exe
+CXX = g++
+CXXFLAGS = -Wall -Wextra -pedantic -std=c++17 -O2
 
-# Automatically finds ALL .cpp files in the folder (e.g., test.cpp, gg.cpp, stats.cpp)
-SRCS     = $(wildcard *.cpp)
+# Shared source files (excluding files with main functions)
+SHARED_SRCS = header.cpp
+SHARED_OBJS = $(SHARED_SRCS:.cpp=.o)
 
-# Automatically changes the .cpp list into a list of .o object files
-OBJS     = $(SRCS:.cpp=.o)
-
-# Compiler to use
-CXX      = g++
-
-# Compiler flags (-Wall -Wextra catch bugs, -std=c++17 sets language standard)
-CXXFLAGS = -Wall -Wextra -pedantic -std=c++17 -O2  # -Werror
+# Main targets
+MAIN_TARGET = test.exe
+TEST_TARGET = unit_test.exe
 
 # ==========================================
 # 2. BUILD RULES
 # ==========================================
-# Default rule called when you just type 'make'
-all: $(TARGET)
+# Typing 'make' will now build BOTH programs safely
+all: $(MAIN_TARGET) $(TEST_TARGET)
 
-# Links ALL detected object files together into the final executable
-$(TARGET): $(OBJS)
-	$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJS)
+# Build the main application (links header.o + test.o)
+$(MAIN_TARGET): test.o $(SHARED_OBJS)
+	$(CXX) $(CXXFLAGS) -o $(MAIN_TARGET) test.o $(SHARED_OBJS)
 
-# Compile individual source files (.cpp) into object files (.o)
+# Build the unit test suite (links header.o + unit_test.o)
+$(TEST_TARGET): unit_test.o $(SHARED_OBJS)
+	$(CXX) $(CXXFLAGS) -o $(TEST_TARGET) unit_test.o $(SHARED_OBJS)
+
+# Generic compile rule for individual object files
 %.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
-
 
 # ==========================================
 # 3. UTILITIES
 # ==========================================
-# Clean up compiled files to start fresh (Run with 'make clean')
 clean:
-	rm -f $(TARGET) *.o
+	rm -f $(MAIN_TARGET) $(TEST_TARGET) *.o
 
-# Tells make that 'all' and 'clean' are commands, not physical files
 .PHONY: all clean

@@ -63,7 +63,11 @@ using namespace std;
 //     this->name = name;
 //   }
 //   // Person (int age, string name): age(age), name(name) {};
-//   Person (const Person& other) { age = other.age; name = other.name; } // copy constructor
+//   Person(const Person &other) {
+//     age = other.age;
+//     name = other.name;
+//   } // copy constructor
+//   Person(int age) : Person(age, "lucas") {};
 //   string getName() const {
 //     return name;
 //   }
@@ -104,12 +108,14 @@ using namespace std;
 //   p.externalClassFunction2();
 //   Student s(12, "Kai", 98);
 //   s.introduce();
+//   cout << s.getName() << '\n';
+
 
 //   Person &ptrS = s;
-//   ptrS.introduce();  // Virtual/Override: ignores the type of
-//   poionter/reference,
-//                      // looks directly at the memory address of the object
-//                      itself
+//   ptrS.introduce();  // Virtual/Override: ignores the type of 
+//   // pointer/reference  (person)
+//   // looks directly at the memory address of the object itself (student)
+  
 // }
 
 
@@ -134,6 +140,9 @@ using namespace std;
 // public:
 //   Rectangle(int length, int width) : Shape(length, width){ cout << "Rectangle is created!\n"; };
 
+//   int parameter() {
+//     return 2 * (length + width);
+//   }
 //   int Area() override { return length * width; }
 //   ~Rectangle() override { cout << "Rectangle is deleted!\n"; };
 // };
@@ -150,6 +159,9 @@ using namespace std;
 //   Shape *rec = new Rectangle(4, 5);   // abstract class cannot instantiate object
 //   Shape *squ = new Square(4, 5);      // memeory address that points to the child concrete class (placeholder)
 //   cout << rec->Area() << " " << squ->Area() << '\n'; // squ->Shape::Area()
+
+//   Rectangle rr(4, 5);
+//   cout << rr.parameter() << '\n';
 //   delete rec; delete squ;
 // }
 
@@ -197,16 +209,16 @@ using namespace std;
   // cout << *it << '\n';
 
 
-  // vector<int> v = {3, 2, 4};
-  // int maxx = *max_element(v.begin(), v.end());
-  // for (vector<int>::iterator it = v.begin(); it != v.end(); it++) {
-  //   cout << *it << " ";
-  // }
-  // cout << *(v.end()-1) << '\n';
-  // vector<int>::iterator it = v.begin();
-  // v.insert(it + 2, 6);
-  // it = v.begin();   // the memory layout of the vector changes after
-  // insert(); v.erase(it + 2);
+// vector<int> v = {3, 2, 4};
+// int maxx = *max_element(v.begin(), v.end());
+// for (vector<int>::iterator it = v.begin(); it != v.end(); it++) {
+//   cout << *it << " ";
+// }
+// cout << *(v.end()-1) << '\n';
+// vector<int>::iterator it = v.begin();
+// v.insert(it + 2, 6);
+// it = v.begin();   // the memory layout of the vector changes after insert();
+// v.erase(it + 2);
   // sort(v.begin(), v.end());
   // for (auto &vv: v) cout << vv << " ";
   // cout << v.size() << " " << v.capacity() << '\n';
@@ -251,22 +263,24 @@ using namespace std;
 // inline int add(int a, int b) { return a + b; }
 
 // int main() {
-  // cout << add(4, 8) << '\n';;
-  // cout << header::add(4, 8) << '\n'; 
+  // cout << add(4, 8) << '\n';
+  // header::add(4, 8);
+  // cout << externInt << '\n';
+
   // set<int> st{1, 3, 2};
   // st.insert(4);
-  // // cout << st.size() << '\n';
-  // // for (set<int>::iterator it = st.begin(); it != st.end(); it++)
-  // //   cout << *it << " ";
+  // cout << st.size() << '\n';
+  // for (set<int>::iterator it = st.begin(); it != st.end(); it++)
+  //   cout << *it << " ";
 
   // cout << *st.rbegin() << " " << *(++st.rbegin())<< '\n';
   // cout << *(--st.rend()) << " ";
   // st.erase(3);
-  // // for (int x : st)
-  // //   cout << x << " ";
-  // // cout << st.count(3) << " ";
-  // // st.clear();
-  // // cout << st.empty() << " ";
+  // for (int x : st)
+  // cout << x << " ";
+  // cout << st.count(3) << " ";
+  // st.clear();
+  // cout << st.empty() << " ";
   // auto search = st.find(2);
   // if (search != st.end()) cout << *search << " " ;
 
@@ -279,11 +293,11 @@ using namespace std;
   // }
   // cout << q.back() << " " << q.size() << '\n';
 
-  // stack<int> st;
-  // st.push(1);
-  // st.push(2);
-  // cout << st.size() << " " << st.empty() << " " << st.top() << '\n';
-  // st.pop();
+  // stack<int> sta;
+  // sta.push(1);
+  // sta.push(2);
+  // cout << sta.size() << " " << sta.empty() << " " << sta.top() << '\n';
+  // sta.pop();
 
   // deque<int> dq;
   // dq.push_front(5);
@@ -301,8 +315,8 @@ using namespace std;
   // cout << "Name: ";
   // string name;
   // cin >> name; // ./test.exe < inputStream.txt
-  // // input redirection: feed a file into stdin/cin, instead of typing
-  // manually cout << name << '\n'; // ./testexe > outputStream.txt
+  // // input redirection: feed a file into stdin/cin, instead of typing manually
+  // cout << name << '\n'; // ./testexe > outputStream.txt
   // // output redirection: send stdout/cout to a file instead of the terminal
   // cout << "Age: ";
   // int age;
@@ -339,10 +353,10 @@ using namespace std;
   // ref = 7; // not allowed
 
   // int arr[5] = {1, 2, 3};
-  // // cout << arr[2] << '\n';
+  // cout << arr[2] << '\n';
 
   // array<double, 3> arr2 = {1.1, 1.2, 1.3};
-  // // cout << arr2[0] << " ";
+  // cout << arr2[0] << " ";
 
   // for (double x : arr2)
   //   cout << x << '\n';
@@ -365,11 +379,10 @@ using namespace std;
 //   string wordToRemove;
 //   cin >> wordToRemove;
 
-//   ifstream fin{inName};
+//   ifstream fin(inName};
 //   ofstream fout(outName);
 
-//   if (!fin.is_open() || !fout.is_open())
-//     return 1;
+//   if (!fin.is_open() || !fout.is_open())  return 1;
 
 //   string word;
 //   while (fin >> word) {
@@ -382,59 +395,59 @@ using namespace std;
 /*Operator overloading in C++ allows you to redefine how standard operators
   behave when used with user-defined types (classes and structs) */
 
-// class Vector2 {
-// private:
-//   double a, b;
-//   array<int, 3> arr;
+class Vector2 {
+private:
+  double a, b;
+  array<int, 3> arr;
 
-// public:
-//   Vector2(double a, double b, std::array<int, 3> &arr) : a(a), b(b), arr(arr){};
+public:
+  Vector2(double a, double b, std::array<int, 3> &arr) : a(a), b(b), arr(arr){};
 
-//   int &operator[](int i) { return this->arr[i]; }
-//   int operator[](int i) const { return this->arr[i]; }  
-//   Vector2 &operator+=(Vector2& other) {
-//     this->a += other.a;
-//     this->b += other.b;
-//     return *this;
-//   }
-//   Vector2 &operator*=(Vector2 &other) {
-//     this->a *= other.a;
-//     this->b *= other.b;
-//     return *this;
-//   }
-//   friend std::ostream &operator<<(ostream &os, const Vector2 &v) {    // 2 operand
-//     // non-member function, jut happens to be defined in he class block
-//     // proper access to private a and b;
-//     os << "a: " << v.a << "\nb: " << v.b << '\n';
-//     return os;  // Return the chaining to allow chaining
-//   }
-//   friend std::istream &operator>>(istream &is, Vector2 &v) {
-//     is >> v.a >> v.b;
-//     return is;
-//   }
-//   double getA() { return a; }
-//   double getB() { return b; }
+  int &operator[](int i) { return this->arr[i]; }
+  int operator[](int i) const { return this->arr[i]; }  
+  Vector2 &operator+=(Vector2& other) {
+    this->a += other.a;
+    this->b += other.b;
+    return *this;
+  }
+  Vector2 &operator*=(Vector2 &other) {
+    this->a *= other.a;
+    this->b *= other.b;
+    return *this;
+  }
+  friend std::ostream &operator<<(ostream &os, const Vector2 &v) {    // 2 operand
+    // non-member function, jut happens to be defined in he class block
+    // proper access to private a and b;
+    os << "a: " << v.a << "\nb: " << v.b << '\n';
+    return os;  // Return the chaining to allow chaining
+  }
+  friend std::istream &operator>>(istream &is, Vector2 &v) {
+    is >> v.a >> v.b;
+    return is;
+  }
+  double getA() { return a; }
+  double getB() { return b; }
 
-//   // 1 operand
-//   Vector2 operator++(int) {   // Postfix: c++ (Saves old state, increments, returns old state by value)
-//     Vector2 temp = *this; // the temp variable is a local variable that will be  destroyed the moment the function hits the closing brace }.
-//     this->a++;  // dangling reference
-//     this->b++;  
+  // 1 operand
+  Vector2 operator++(int) {   // Postfix: c++ (Saves old state, increments, returns old state by value)
+    Vector2 temp = *this; // the temp variable is a local variable that will be  destroyed the moment the function hits the closing brace }.
+    this->a++;  // dangling reference
+    this->b++;  
     
-//     return temp;  // return old state  
-//   }
-//   inline Vector2 &operator++() {  // Prefix: ++c (Increments and returns by reference)
-//     a++;
-//     b++;
-//   return *this; 
+    return temp;  // return old state  
+  }
+  inline Vector2 &operator++() {  // Prefix: ++c (Increments and returns by reference)
+    a++;
+    b++;
+  return *this; 
   
-// }
-// };
+}
+};
 
-// inline Vector2 &operator+(Vector2 &lhs, Vector2 &rhs) { 
-//   lhs += rhs;
-//   return lhs;
-// };
+inline Vector2 &operator+(Vector2 &lhs, Vector2 &rhs) { 
+  lhs += rhs;
+  return lhs;
+};
 
 
 // T = placeholder
@@ -469,11 +482,10 @@ using namespace std;
 // }
 
 
-// // static storage: global variable, static member function, static variable
-// in
-// // function [global]
-// // automatic storage: a local variable lives inside the block [stack]
-// // dynamic storage: new -> delete (memeory leak) [heap]
+// static storage: global variable, static member function, static variable
+// in function [global]
+// automatic storage: a local variable lives inside the block [stack]
+// dynamic storage: new -> delete (memeory leak) [heap]
 
 // int main() {
 //   int externInt = 8;
@@ -498,7 +510,7 @@ using namespace std;
 
 //   int howmany;
 //   cin >> howmany;
-//   int *arrptr = new int[howmany]; // dynamically allocated array -> runtikme
+//   int *arrptr = new int[howmany]; // dynamically allocated array -> runtime
 //   delete[] arrptr;
 
 //   vector<string> words = {"1", "1", "1"};
@@ -516,9 +528,9 @@ using namespace std;
   // StringSet.insert("b");
   // StringSet.print();
 
-//   array<int, 3> arr = {1, 2, 3};
-//   Vector2 v2{1.0, 2.0, arr};
-//   Vector2 v2_1{3, 5, arr};
+  // array<int, 3> arr = {1, 2, 3};
+  // Vector2 v2{1.0, 2.0, arr};
+  // Vector2 v2_1{3, 5, arr};
 
 //   cout << arr[1];
   // cout << v2;
@@ -530,7 +542,7 @@ using namespace std;
   // cout << v2;
   // cin >> v2;
   // cout << v2;
-
+  
   // operator<<(cout, v2);
   // v2.operator+=(v2_1);
   // operator<<(cout, operator+(v2, v2_1));
@@ -539,7 +551,8 @@ using namespace std;
   // v2.operator++(0);
   // operator<<(cout, v2);
 
-  //   v2 *= v2 += v2; // operation chaining
+  // v2 *= v2 += v2; // operation chaining
+
   // list<int> myList = {1, 3, 4};
 
   // auto it = myList.begin();
@@ -568,42 +581,146 @@ using namespace std;
 
 // 1. store unique key-value pairs 2. keep the keys sorted dynamically
 // int main() {
-  // map<int, string> mp{{3, "P2"}, {4, "P3"}};
-  // mp[2] = "P1";
-  // mp[5] = "P5";
-  // cout << mp[2] << '\n';
-  // for (map<int, string>::iterator it = mp.begin(); it != mp.end(); it++) {
-  //   cout << (*it).first << " " << (*it).second << '\n';
-  // }
-  // for (const auto &x : mp)
-  //   cout << x.first << " " << x.second << '\n';
+//   map<int, string> mp{{3, "P2"}, {4, "P3"}};
+//   mp[2] = "P1";
+//   mp[5] = "P5";
+//   cout << mp[2] << '\n';
+//   for (map<int, string>::iterator it = mp.begin(); it != mp.end(); it++) {
+//     cout << (*it).first << " " << (*it).second << '\n';
+//   }
+//   cout << mp.erase(2) << '\n'; // erase unsuccessfully
+//   for (const auto &x : mp)
+//     cout << x.first << " " << x.second << '\n';
   // mp.insert({6, "P7"});
 
   // cout << mp.insert(pair<int, string>(7, "P8")).second
   //      << '\n'; // 1 -> insert successfully
-  // cout << mp.erase(10) << '\n'; // erase unsuccessfully
+  
   // mp.clear();
   // cout << mp.empty() << '\n';
 
 
-//   unordered_map<int, string> unordered_mp{{2, "P2"}, {1, "P1"}};  //
-//   Completely unsorted, hash table unordered_mp.insert({4, "P4"}); for (const
-//   auto &x : unordered_mp)
-//     cout << x.first << " " << x.second << '\n';
+  // unordered_map<int, string> unordered_mp{{2, "P2"}, {1, "P1"}};
+  // Completely unsorted, hash table
+  // unordered_mp.insert({4, "P4"});
+  // for (const auto &x : unordered_mp)
+  //  cout << x.first << " " << x.second << '\n';
 // }
 
-void counterFunction() {
-  static int count = 0; // initialized only once, not visiable outside the function
-  count += 10;
-  cout << count << " ";
-}
-int main() {
-  counterFunction();
-  counterFunction();
-}
+// void counterFunction() {
+//   static int count = 0; // initialized only once, not visiable outside the function
+//   count += 10;
+//   cout << count << " ";
+// }
+
+// void read(string &v, std::istream &is) {is >> v; }
+// void print(string input, std::ostream &os) { os << input << '\n'; }
+
+// int main() {
+//   // counterFunction();
+//   // counterFunction();
+//   string word;
+//   read(word, cin);
+//   print(word, cout);
+//   cout << stod(word); // stoi()
+                      
+  // Image img;
+  // Image_init(&img, ss_input);
+  // ostringstream ss_output;
+  // Matrix_print(&mat, ss_output);
+  
+  // return 1; // echo $?
+// }
 
 // Unit testing is a software development practice where individual components
 // or units of code (such as functions, methods, or classes) are tested in
 // isolation to verify they work exactly as expected
 // Arrange -> Act -> Assert
 // Edge cases, extreme operating limits
+
+
+// struct Triangle {
+//   int a, b, c;
+//   // defualt: Triangle() {};
+//   void check_invariants() {
+//     assert(a > 0 && b > 0 && c > 0);
+//     assert(a + b > c && a + c > b && b + c > a);
+//   } 
+//   Triangle(int a, int b, int c) : a(a), b(b), c(c) {
+//     check_invariants();
+//   };
+// };
+
+// void Triangle_init(Triangle *t, int a, int b, int c) {
+//   t->a = a;
+//   t->b = b;
+//   t->c = c;
+//   t->check_invariants();
+// }
+// void parameter(const Triangle *t) {
+//   cout << t->a << " " << t->b << " " << t->c << '\n';
+// }
+// void Triangle_scale(Triangle *t, int k) {
+//   t->a *= k;
+//   t->b *= k;
+//   t->c *= k;
+// }
+
+// int MAX_VALUE(int arr[], int size) { // array decay int arr[] => int *arr,
+// arr[i] -> *(arr + i)
+//   int maxx = arr[0];
+//   for (int i = 0; i < size; i++) {
+//     maxx = max(maxx, arr[i]);
+//   }
+//   return maxx;
+// }
+// void stringprint(const char *str) {
+//   while (*str != '\0') {
+//     cout << *str;
+//     str++;
+//   }
+// }
+// int main() {
+//   Triangle t(4, 5, 6);
+//   Triangle_init(&t, 1, 2, 3);
+//   parameter(&t);
+//   Triangle_scale(&t, 4);
+//   parameter(&t);
+//   cout << t.a << '\n';
+
+//   int arr[5] = {1, 2, 3, 4, 5};
+//   cout << *arr << '\n';
+//   cout << *(arr + 1) << '\n'; // ptr[i] = *(ptr + i)
+//   int SIZE = (int) sizeof(arr) / sizeof(arr[0]);
+//   for (int *ptr = arr; ptr < arr + SIZE; ptr++) {
+//     cout << *ptr << " ";
+//   }
+
+//   array<int, 5> arr_std = {1, 2, 3};
+//   cout << arr_std.size();
+
+//   char words[6] = "hello";
+//   stringprint(words);
+// }
+
+
+// void swap(int *a, int *b) {
+//   int temp = *a;
+//   *a = *b;
+//   *b = temp;
+// }
+// void swap2(int &a, int &b) {
+//   int temp = a;
+//   a = b;
+//   b = temp;
+// }
+
+// int main() {
+//   int a = 10;
+//   int b = 20;
+//   swap(&a, &b);
+//   cout << a << " " << b << '\n';
+//   swap2(a, b);
+//   cout << a << " " << b << '\n';
+// }
+

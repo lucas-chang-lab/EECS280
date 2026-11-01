@@ -19,3 +19,11 @@ inline int add(int a, int b) {  // Enables header only libraries, avoid "multipl
 
 #endif
 
+// interface
+
+/* Specification Comments (RMEs)
+  Requires: prerequisites for the function to make sense
+  (implementation only needs to cover cases allowed by the interface's REQUIRE clause)
+  Modifies: which things are potentially changed.
+  Effects: specifies what the function does.
+*/
